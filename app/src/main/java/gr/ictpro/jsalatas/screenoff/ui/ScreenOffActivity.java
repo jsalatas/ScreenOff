@@ -22,8 +22,8 @@ public class ScreenOffActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         final WindowManager.LayoutParams winParams = getWindow().getAttributes();
 
-        winParams.screenBrightness = 0.01f;
-        winParams.buttonBrightness = 0.01f;
+        winParams.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+        winParams.buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
 
         getWindow().setAttributes(winParams);
 
