@@ -6,17 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.service.voice.VoiceInteractionSession;
-import gr.ictpro.jsalatas.screenoff.ui.ScreenOffActivity;
+import gr.ictpro.jsalatas.screenoff.ui.VoiceActivity;
 
-public class ScreenOffSession extends VoiceInteractionSession {
-    public ScreenOffSession(Context context) {
+class ScreenOffSession extends VoiceInteractionSession {
+    ScreenOffSession(Context context) {
         super(context);
     }
 
     @Override
     public void onHandleAssist(Bundle data, AssistStructure structure, AssistContent content) {
         super.onHandleAssist(data, structure, content);
-        Intent screenOffActivity = new Intent(getContext(), ScreenOffActivity.class);
-        startVoiceActivity(screenOffActivity);
+
+        Intent voiceActivity = new Intent(getContext(), VoiceActivity.class);
+        startVoiceActivity(voiceActivity);
     }
 }

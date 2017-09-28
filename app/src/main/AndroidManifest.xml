@@ -6,19 +6,17 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
-            android:allowBackup="true"
+            android:name=".application.ScreenOffApplication"
+            android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ui.ScreenOffActivity">
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".ui.ScreenOffActivity"
+                android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.VOICE" />
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -40,6 +38,15 @@
                 android:name=".service.ScreenOffSessionService"
                 android:permission="android.permission.BIND_VOICE_INTERACTION">
         </service>
+
+        <activity android:name=".ui.VoiceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.VOICE"/>
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

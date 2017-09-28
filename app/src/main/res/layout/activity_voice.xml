@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainActivity"
-        tools:context="gr.ictpro.jsalatas.screenoff.ui.ScreenOffActivity">
+        android:id="@+id/voiceActivity"
+        tools:context="gr.ictpro.jsalatas.screenoff.ui.VoiceActivity">
 
 </android.support.constraint.ConstraintLayout>
