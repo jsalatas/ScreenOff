@@ -7,6 +7,7 @@ public class SettingsWriter {
     private static SettingsWriter instance;
 
     private int screenTimeout;
+    private String stayAwake;
 
     public static synchronized SettingsWriter getInstance() {
         if(instance == null) {
@@ -16,23 +17,26 @@ public class SettingsWriter {
     }
 
     private SettingsWriter() {
-        initScreenTimeout();
+        saveInitialTimeout();
     }
 
-    public void resetScreenTimeout() {
-            Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, screenTimeout);
+    public void restoreTimeout() {
+        Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, screenTimeout);
+        Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, stayAwake);
     }
 
-    public void setScreenTimeout(int s) {
-            Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, s);
+    public void decreaseTimeout() {
+        Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, 0);
+        Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, "0");
     }
 
-    private void initScreenTimeout() {
+    private void saveInitialTimeout() {
         try {
             int newValue = Settings.System.getInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
             if(newValue != 0) {
                 screenTimeout = newValue;
             }
+            stayAwake = Settings.Global.getString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN);
         } catch (Settings.SettingNotFoundException ex) {
             // Do nothing
         }

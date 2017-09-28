@@ -49,7 +49,7 @@ public class ScreenOffActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        SettingsWriter.getInstance().resetScreenTimeout();
+        SettingsWriter.getInstance().restoreTimeout();
         super.onDestroy();
         System.exit(0);
     }

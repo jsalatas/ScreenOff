@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="gr.ictpro.jsalatas.screenoff">
+          xmlns:tools="http://schemas.android.com/tools" package="gr.ictpro.jsalatas.screenoff">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions"/>
 
     <application
             android:name=".application.ScreenOffApplication"

@@ -15,7 +15,7 @@ public class ScreenOffTask extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... voids) {
         synchronized (this) {
             try {
-                SettingsWriter.getInstance().setScreenTimeout(0);
+                SettingsWriter.getInstance().decreaseTimeout();
 
                 do {
                     screenOffActivity.setResetTimer(false);
