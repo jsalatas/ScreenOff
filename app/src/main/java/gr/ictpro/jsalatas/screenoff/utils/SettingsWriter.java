@@ -10,7 +10,7 @@ public class SettingsWriter {
     private String stayAwake;
 
     public static synchronized SettingsWriter getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new SettingsWriter();
         }
         return instance;
@@ -21,19 +21,27 @@ public class SettingsWriter {
     }
 
     public void restoreTimeout() {
-        Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, screenTimeout);
-        Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, stayAwake);
+        try {
+            Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, screenTimeout);
+            Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, stayAwake);
+        } catch (SecurityException ex) {
+            // Do Nothing
+        }
     }
 
     public void decreaseTimeout() {
-        Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, 0);
-        Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, "0");
+        try {
+            Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, 0);
+            Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, "0");
+        } catch (SecurityException ex) {
+            // Do Nothing
+        }
     }
 
     private void saveInitialTimeout() {
         try {
             int newValue = Settings.System.getInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
-            if(newValue != 0) {
+            if (newValue != 0) {
                 screenTimeout = newValue;
             }
             stayAwake = Settings.Global.getString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN);
