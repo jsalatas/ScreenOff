@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Screen Off</string>
+    <string name="permissions_title">Permissions Required</string>
 </resources>

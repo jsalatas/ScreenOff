@@ -1,13 +1,17 @@
 package gr.ictpro.jsalatas.screenoff.ui;
 
-import android.app.Activity;
+import android.app.*;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import gr.ictpro.jsalatas.screenoff.R;
+import gr.ictpro.jsalatas.screenoff.application.ScreenOffApplication;
 import gr.ictpro.jsalatas.screenoff.task.ScreenOffTask;
 import gr.ictpro.jsalatas.screenoff.utils.SettingsWriter;
 
-public class ScreenOffActivity extends Activity {
+public class ScreenOffActivity extends AppCompatActivity {
     private boolean resetTimer;
 
     @Override
@@ -20,12 +24,6 @@ public class ScreenOffActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        final WindowManager.LayoutParams winParams = getWindow().getAttributes();
-
-        winParams.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
-        winParams.buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
-
-        getWindow().setAttributes(winParams);
 
         getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
@@ -33,6 +31,28 @@ public class ScreenOffActivity extends Activity {
                 fullScreen();
             }
         });
+    }
+
+    private boolean checkPermissions() {
+        if (!Settings.System.canWrite(ScreenOffApplication.getContext())) {
+            DialogFragment dialog = new PermissionsDialog();
+            dialog.show(getFragmentManager(), "PermissionsDialog");
+            return false;
+        }
+        return true;
+    }
+
+    private void screenOff() {
+        if (checkPermissions()) {
+            final WindowManager.LayoutParams winParams = getWindow().getAttributes();
+            winParams.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+            winParams.buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+            getWindow().setAttributes(winParams);
+
+            resetTimer = false;
+            ScreenOffTask task = new ScreenOffTask(this);
+            task.execute();
+        }
     }
 
     public void taskCompleted() {
@@ -56,11 +76,7 @@ public class ScreenOffActivity extends Activity {
 
     @Override
     public void finish() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            super.finishAndRemoveTask();
-//        } else {
-//            super.finish();
-//        }
+        super.finishAndRemoveTask();
     }
 
     @Override
@@ -73,10 +89,7 @@ public class ScreenOffActivity extends Activity {
     protected void onResume() {
         super.onResume();
         fullScreen();
-
-        resetTimer = false;
-        ScreenOffTask task = new ScreenOffTask(this);
-        task.execute();
+        screenOff();
     }
 
     @Override
@@ -93,6 +106,12 @@ public class ScreenOffActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        resetTimer = true;
     }
 }
 
