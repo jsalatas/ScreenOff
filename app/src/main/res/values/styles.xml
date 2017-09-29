@@ -12,6 +12,25 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="AppTheme.PermissionsDialog">
+
+    </style>
+
+    <style name="AppTheme.PermissionsDialog.Title" parent="@android:style/TextAppearance.DeviceDefault.Large">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.PermissionsDialog.Message" parent="@android:style/TextAppearance.DeviceDefault">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.PermissionsDialog.Buttons" parent="@android:style/TextAppearance.DeviceDefault">
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:capitalize">characters</item>
+    </style>
+
 </resources>
 
 

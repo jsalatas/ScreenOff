@@ -1,18 +1,22 @@
 package gr.ictpro.jsalatas.screenoff.ui;
 
 import android.app.*;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
+import android.widget.Toast;
 import gr.ictpro.jsalatas.screenoff.R;
 import gr.ictpro.jsalatas.screenoff.application.ScreenOffApplication;
 import gr.ictpro.jsalatas.screenoff.task.ScreenOffTask;
 import gr.ictpro.jsalatas.screenoff.utils.SettingsWriter;
 
-public class ScreenOffActivity extends AppCompatActivity {
+public class ScreenOffActivity extends AppCompatActivity implements PermissionsDialog.PermissionsDialogListener {
     private boolean resetTimer;
+    private boolean grantingPermissions = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,12 @@ public class ScreenOffActivity extends AppCompatActivity {
 
     private boolean checkPermissions() {
         if (!Settings.System.canWrite(ScreenOffApplication.getContext())) {
+            grantingPermissions = true;
+
             DialogFragment dialog = new PermissionsDialog();
+            dialog.setCancelable(false);
             dialog.show(getFragmentManager(), "PermissionsDialog");
+
             return false;
         }
         return true;
@@ -82,13 +90,16 @@ public class ScreenOffActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+        if(!grantingPermissions) {
+            finish();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         fullScreen();
+        grantingPermissions = false;
         screenOff();
     }
 
@@ -113,5 +124,23 @@ public class ScreenOffActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         resetTimer = true;
     }
-}
 
+    @Override
+    public void onOkClick() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setData(Uri.parse("package:" + this.getPackageName()));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(ScreenOffApplication.getContext(), R.string.toast_message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void onCancelClick() {
+        finish();
+    }
+}

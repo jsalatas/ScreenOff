@@ -6,6 +6,6 @@
         android:layout_height="match_parent"
         android:id="@+id/mainActivity"
         android:background="@color/colorPrimaryDark"
-        tools:context="gr.ictpro.jsalatas.screenoff.ui.ScreenOffActivity">
+        tools:context="gr.ictpro.jsalatas.screenoff.ui.ScreenOffActivity" tools:ignore="Overdraw">
 
 </android.support.constraint.ConstraintLayout>

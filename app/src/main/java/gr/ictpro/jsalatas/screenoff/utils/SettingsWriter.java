@@ -27,6 +27,7 @@ public class SettingsWriter {
         } catch (SecurityException ex) {
             // Do Nothing
         }
+
     }
 
     public void decreaseTimeout() {

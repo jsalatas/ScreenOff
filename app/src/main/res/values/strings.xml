@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Screen Off</string>
     <string name="permissions_title">Permissions Required</string>
+    <string name="permissions_message">This application requires the permission to change the system settings.\n\nYou need to grant this permission manually.</string>
+    <string name="permissions_change">grant permission</string>
+    <string name="toast_message">Please tap on \'Allow permission\' and restart the application</string>
 </resources>
