@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="gr.ictpro.jsalatas.screenoff">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="gr.ictpro.jsalatas.screenoff">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+            android:name="android.permission.WRITE_SECURE_SETTINGS"
+            tools:ignore="ProtectedPermissions"/>
 
     <application
             android:name=".application.ScreenOffApplication"
@@ -14,10 +17,11 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".ui.ScreenOffActivity"
-                android:launchMode="singleInstance"
-                android:configChanges="orientation|screenSize">
+                android:configChanges="orientation|screenSize"
+                android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -43,10 +47,21 @@
         <activity android:name=".ui.VoiceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.VOICE"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.ScreenOffSettingsActivity"
+                android:label="@string/title_activity_screen_off_setting"
+                android:icon="@mipmap/ic_screen_off_settings"
+                android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
