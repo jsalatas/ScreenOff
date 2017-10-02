@@ -21,17 +21,31 @@
 
 package gr.ictpro.jsalatas.screenoff.ui;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import gr.ictpro.jsalatas.screenoff.R;
 
-public class VoiceActivity extends Activity {
+@SuppressWarnings("WeakerAccess")
+public class DonateFragment extends Fragment {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Intent screenOffActivity = new Intent(getApplicationContext(), ScreenOffActivity.class);
-        startActivity(screenOffActivity);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.donate_fragment, container, false);
+        TextView tvDonate = (TextView) view.findViewById(R.id.tvDonate);
+        tvDonate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://paypal.me/jsalatas");
+                v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            }
+        });
 
-        finish();
+        return view;
     }
 }

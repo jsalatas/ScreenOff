@@ -21,7 +21,6 @@
                 android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -47,7 +46,6 @@
         <activity android:name=".ui.VoiceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.VOICE"/>
             </intent-filter>
@@ -56,10 +54,10 @@
                 android:name=".ui.ScreenOffSettingsActivity"
                 android:label="@string/title_activity_screen_off_setting"
                 android:icon="@mipmap/ic_screen_off_settings"
-                android:theme="@style/AppTheme">
+                android:theme="@style/AppTheme"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

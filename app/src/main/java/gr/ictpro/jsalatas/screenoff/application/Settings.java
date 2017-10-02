@@ -21,21 +21,25 @@
 
 package gr.ictpro.jsalatas.screenoff.application;
 
-import android.app.Application;
-import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
-public class ScreenOffApplication extends Application{
-    private static Context context;
-    private static Settings settings;
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ScreenOffApplication.context = this.getApplicationContext();
-        ScreenOffApplication.settings = new Settings();
+public class Settings {
+    private static final int DEFAULT_TIME_OUT = 3;
+    private static final String TIME_OUT_KEY = "timeout";
+    private final SharedPreferences prefs;
+
+    Settings() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(ScreenOffApplication.getContext());
     }
 
-    public static Context getContext() {
-        return context;
+    public void setTimeout(int timeout) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(TIME_OUT_KEY, timeout);
+        editor.apply();
     }
-    public static Settings getSettings() { return settings; }
+
+    public int getTimeout() {
+        return prefs.getInt(TIME_OUT_KEY, DEFAULT_TIME_OUT);
+    }
 }

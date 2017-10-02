@@ -16,5 +16,14 @@
     <string name="donate">Donate</string>
     <string name="settings">Settings</string>
     <string name="email">Email us</string>
+    <string name="email_chooser">Send email</string>
     <string name="support">Support</string>
+    <string name="donate_message">If you like my app, please consider showing your gratitude by buying me a beer.
+    </string>
+    <string name="donate_message2">If you cannot afford it, don\'t worry. Emailing me and letting me know that you are
+        using my app, would be also highly appreciated.
+    </string>
+    <string name="donate_message3">Thanks!</string>
+    <string name="donate_message4">😊</string>
+    <string name="settings_timeout_description">Set the maximum timeout (in seconds) to wait before turning off the screen</string>
 </resources>

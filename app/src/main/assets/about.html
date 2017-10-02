@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Screen Off</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        h1 {
+            padding-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        h2 {
+            padding-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        h3 {
+            padding-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        em {
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        pre {
+            text-align: left;
+            overflow-x: scroll;
+        }
+
+        a {
+            font-weight: 500;
+            text-decoration: none;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<h1>What is it?</h1>
+<p><b>Screen Off</b> can be used to turn off and lock the screen of any Android 6.0 (Marshmallow) or 7.0 (Nougat)
+    device, in a way that it can be unlocked without violating the security policy that requires a PIN to unlock. </p>
+<p>That means that you can use your fingerprint to unlock your device, as you would normally do if the screen was turned
+    of by pressing the hardware power key.</p>
+<p><b>Screen Off</b> can also be assigned to be the <em>Assist App</em> of your device and thus it can be activated by
+    long-pressing the Home key</p>
+
+<h1>How it Works?</h1>
+<p>Behind the scenes <b>Screen Off</b> temporarily lowers the <em>Screen timeout</em> setting to zero and then waits
+    for some time which can be modified in <a href="screenoffsettings:///settings">Settings</a> until the
+    operating system triggers the timeout and the screen is turn off. During that wait time the screen is dimmed out
+    and protected against any accidental touch.</p>
+
+<h2>Permissions Needed</h2>
+<h3>Write Settings</h3>
+<p><b>Screen Off</b> needs to be able to change system settings and it will ask you to explicitly allow this the first
+    time it runs</p>
+<h3>Write Secure Settings</h3>
+<p>Furthermore, if you have enabled the <em>Developer Options</em> and the <em>Stay awake</em> option, <b>Screen Off</b>
+    can still lock the screen even while charging. In order to do so, it needs to be able to change secure system
+    settings. You need to explicitly allow this by connecting your phone to a PC having Android SDK installed, opening
+    a command prompt and typing the following command:</p>
+<pre>adb shell pm grant gr.ictpro.jsalatas.screenoff android.permission.WRITE_SECURE_SETTINGS
+
+</pre>
+
+
+<h1>Source Code</h1>
+<p>The source code is available in <a href="https://github.com/jsalatas/ScreenOff">GitHub</a> and is distributed under
+    the <a href="screenoffsettings:///license">The GNU General Public License v3.0</a></p>
+
+<em>Copyright &copy; 2017: John Salatas. All Rights Reserved.</em>
+</body>
+</html>
