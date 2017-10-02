@@ -1,5 +1,5 @@
 /*
-  Screen Off: to turn off and lock the screen of any Android 6.0
+  Screen Off: turn off and lock the screen of any Android 6.0
   (Marshmallow) or 7.0 (Nougat) device, in a way that it can be
   unlocked without violating the security policy that requires a
   PIN to unlock.
