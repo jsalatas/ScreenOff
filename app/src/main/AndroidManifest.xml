@@ -14,7 +14,7 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/MainActivityTheme">
         <activity
                 android:name=".ui.ScreenOffActivity"
                 android:configChanges="orientation|screenSize"
@@ -54,8 +54,8 @@
                 android:name=".ui.ScreenOffSettingsActivity"
                 android:label="@string/title_activity_screen_off_setting"
                 android:icon="@mipmap/ic_screen_off_settings"
-                android:theme="@style/AppTheme"
-                android:exported="true">
+                android:exported="true"
+                android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
