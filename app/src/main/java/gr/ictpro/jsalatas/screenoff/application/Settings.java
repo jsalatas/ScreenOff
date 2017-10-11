@@ -25,7 +25,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class Settings {
-    private static final int DEFAULT_TIME_OUT = 3;
+    private static final int DEFAULT_TIME_OUT = 5;
     private static final String TIME_OUT_KEY = "timeout";
     private final SharedPreferences prefs;
 

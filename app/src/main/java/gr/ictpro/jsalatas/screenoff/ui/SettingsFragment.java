@@ -38,7 +38,7 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.settings_fragment, container, false);
         NumberPicker pickerTimeout = (NumberPicker ) view.findViewById(R.id.picker_timeout);
         pickerTimeout.setMinValue(1);
-        pickerTimeout.setMaxValue(10);
+        pickerTimeout.setMaxValue(15);
         pickerTimeout.setValue(ScreenOffApplication.getSettings().getTimeout());
         pickerTimeout.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override

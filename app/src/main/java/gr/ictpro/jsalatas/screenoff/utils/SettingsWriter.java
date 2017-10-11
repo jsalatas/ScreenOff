@@ -53,7 +53,7 @@ public class SettingsWriter {
 
     public void decreaseTimeout() {
         try {
-            Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, 0);
+            Settings.System.putInt(ScreenOffApplication.getContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, 1);
             Settings.Global.putString(ScreenOffApplication.getContext().getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, "0");
         } catch (SecurityException ex) {
             // Do Nothing
