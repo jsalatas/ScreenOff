@@ -24,14 +24,27 @@ package gr.ictpro.jsalatas.screenoff.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 public class VoiceActivity extends Activity {
+
+    private Handler mTimerHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent screenOffActivity = new Intent(getApplicationContext(), ScreenOffActivity.class);
         startActivity(screenOffActivity);
 
-        finish();
+
+        Runnable mTimerExecutor = new Runnable() {
+
+            @Override
+            public void run() {
+                finish();
+            }
+        };
+
+        mTimerHandler.postDelayed(mTimerExecutor, 2000);
     }
 }
