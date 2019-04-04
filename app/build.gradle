@@ -6,8 +6,8 @@ android {
         applicationId "gr.ictpro.jsalatas.screenoff"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 9
+        versionName "1.0.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

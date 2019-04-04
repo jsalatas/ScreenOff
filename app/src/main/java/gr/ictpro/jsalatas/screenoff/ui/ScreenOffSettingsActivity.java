@@ -93,8 +93,6 @@ public class ScreenOffSettingsActivity extends AppCompatActivity
             loadFragment(new AboutFragment(), true);
         } else if (id == R.id.nav_license) {
             loadFragment(new LicenseFragment(), true);
-        } else if (id == R.id.nav_donate) {
-            loadFragment(new DonateFragment(), true);
         } else if (id == R.id.nav_settings) {
             loadFragment(new SettingsFragment(), true);
         } else if (id == R.id.nav_email) {
@@ -122,11 +120,8 @@ public class ScreenOffSettingsActivity extends AppCompatActivity
         else if(fragment instanceof LicenseFragment){
             index = 1;
         }
-        else if(fragment instanceof DonateFragment){
-            index = 2;
-        }
         else if(fragment instanceof SettingsFragment){
-            index = 3;
+            index = 2;
         }
         if(index != -1) {
             navigationView.getMenu().getItem(index).setChecked(checked);
