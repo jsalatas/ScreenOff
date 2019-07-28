@@ -21,10 +21,12 @@
 
 package gr.ictpro.jsalatas.screenoff.ui;
 
+import android.accessibilityservice.AccessibilityService;
 import android.app.*;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -32,12 +34,18 @@ import android.view.*;
 import android.widget.Toast;
 import gr.ictpro.jsalatas.screenoff.R;
 import gr.ictpro.jsalatas.screenoff.application.ScreenOffApplication;
+import gr.ictpro.jsalatas.screenoff.service.GlobalActionService;
 import gr.ictpro.jsalatas.screenoff.task.ScreenOffTask;
 import gr.ictpro.jsalatas.screenoff.utils.SettingsWriter;
 
 public class ScreenOffActivity extends AppCompatActivity implements PermissionsDialog.PermissionsDialogListener {
     private boolean resetTimer;
     private boolean grantingPermissions = false;
+    private static GlobalActionService actionService;
+
+    public static void setActionService(GlobalActionService actionService) {
+        ScreenOffActivity.actionService = actionService;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +66,14 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
         });
     }
 
+    public static boolean canUseLockScreenGlobalAction() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && actionService != null;
+    }
+
     private boolean checkPermissions() {
-        if (!Settings.System.canWrite(ScreenOffApplication.getContext())) {
+        if(ScreenOffActivity.canUseLockScreenGlobalAction()) {
+            // do nothing
+        } else if (!Settings.System.canWrite(ScreenOffApplication.getContext())) {
             grantingPermissions = true;
 
             DialogFragment dialog = new PermissionsDialog();
@@ -68,11 +82,15 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
 
             return false;
         }
+
         return true;
     }
 
     private void screenOff() {
-        if (checkPermissions()) {
+        if(ScreenOffActivity.canUseLockScreenGlobalAction()) {
+            System.out.println(">>>>>>>>>>>>>>>>> salatas: performing global action");
+            ScreenOffActivity.actionService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
+        } else if (checkPermissions()) {
             final WindowManager.LayoutParams winParams = getWindow().getAttributes();
             winParams.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
             winParams.buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;

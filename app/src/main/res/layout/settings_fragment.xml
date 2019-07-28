@@ -6,16 +6,46 @@
               android:gravity="center_vertical|center"
               android:layout_margin="20dp">
 
+    <LinearLayout android:id="@+id/no_settings"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:gravity="center_vertical|center"
+                  android:visibility="gone">
+        <TextView android:id="@+id/no_settings_description"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="10dp"
+                  android:gravity="center"
+                  android:text="@string/no_settings_description"/>
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="10dp"
-              android:gravity="center"
-              android:text="@string/settings_timeout_description"/>
+    </LinearLayout>
 
-    <NumberPicker android:id="@+id/picker_timeout"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"/>
+    <LinearLayout android:id="@+id/settings_timeout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:gravity="center_vertical|center">
 
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="10dp"
+                  android:gravity="center"
+                  android:text="@string/settings_timeout_description"/>
+
+        <NumberPicker android:id="@+id/picker_timeout"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+        <TextView android:id="@+id/accessibility_preffered_method"
+                android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="10dp"
+                  android:gravity="center"
+                  android:visibility="gone"
+                  android:text="@string/settings_timeout_description_accessibility"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

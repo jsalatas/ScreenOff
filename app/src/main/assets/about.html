@@ -62,12 +62,23 @@
     long-pressing the Home key.</p>
 
 <h1>How it Works?</h1>
+<h2>Android 9 or higher</h2>
+<p>A new action <a href="https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#GLOBAL_ACTION_LOCK_SCREEN">GLOBAL_ACTION_LOCK_SCREEN</a>
+was <a href="https://developer.android.com/about/versions/pie/android-9.0">introduced in Android 9</a> which enable screen locking
+without the need of the timeout workarround described below.</p>
+<p>This is the preffered method for devices running Android Pie or higher, however your device will fall back automatically to the timeout workarround if you don't enable the accessibility service</p>
+
+<h2>timeout workarround (for devices running android versions older than 9)</h2>
 <p>Behind the scenes <b>Screen Off</b> temporarily lowers the <em>Screen timeout</em> setting to zero and then waits
     for some time which can be modified in <a href="screenoffsettings:///settings">Settings</a> until the
     operating system triggers the timeout and the screen is turn off. During that wait time the screen is dimmed out
     and protected against any accidental touch.</p>
 
-<h2>Permissions Needed</h2>
+<h1>Permissions Needed</h1>
+<h2>Android 9 or higher</h2>
+<p>If you enable the <b>Screen Off Global Action Performer Service</b> then no additional permissions are required.</p>
+
+<h2>Timeout workarround (for devices running android versions  older than 9)</h2>
 <h3>Write Settings</h3>
 <p><b>Screen Off</b> needs to be able to change system settings and it will ask you to explicitly allow this the first
     time it runs</p>

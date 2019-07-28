@@ -22,11 +22,14 @@
 package gr.ictpro.jsalatas.screenoff.ui;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import gr.ictpro.jsalatas.screenoff.R;
 import gr.ictpro.jsalatas.screenoff.application.ScreenOffApplication;
 
@@ -36,16 +39,28 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.settings_fragment, container, false);
-        NumberPicker pickerTimeout = (NumberPicker ) view.findViewById(R.id.picker_timeout);
-        pickerTimeout.setMinValue(1);
-        pickerTimeout.setMaxValue(15);
-        pickerTimeout.setValue(ScreenOffApplication.getSettings().getTimeout());
-        pickerTimeout.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                ScreenOffApplication.getSettings().setTimeout(newVal);
+        if(ScreenOffActivity.canUseLockScreenGlobalAction()) {
+            LinearLayout layout = view.findViewById(R.id.settings_timeout);
+            layout.setVisibility(View.GONE);
+            layout = view.findViewById(R.id.no_settings);
+            layout.setVisibility(View.VISIBLE);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                TextView settingsDescription = view.findViewById(R.id.accessibility_preffered_method);
+                settingsDescription.setVisibility(View.VISIBLE);
+
             }
-        });
+            NumberPicker pickerTimeout = view.findViewById(R.id.picker_timeout);
+            pickerTimeout.setMinValue(1);
+            pickerTimeout.setMaxValue(15);
+            pickerTimeout.setValue(ScreenOffApplication.getSettings().getTimeout());
+            pickerTimeout.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                    ScreenOffApplication.getSettings().setTimeout(newVal);
+                }
+            });
+        }
         return view;
     }
 }
