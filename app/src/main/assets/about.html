@@ -54,10 +54,10 @@
 <body>
 
 <h1>What is it?</h1>
-<p><b>Screen Off</b> can be used to turn off and lock the screen of any device running Android 6.0 (Marshmallow) or heigher,
+<p><b>Screen Off</b> can be used to turn off and lock the screen of any device running Android 6.0 (Marshmallow) or higher,
     in a way that it can be unlocked without violating the security policy that requires a PIN to unlock. </p>
 <p>That means that you can use your fingerprint to unlock your device, as you would normally do if the screen was turned
-    of by pressing the hardware power key.</p>
+    off by pressing the hardware power key.</p>
 <p><b>Screen Off</b> can also be assigned to be the <em>Assist App</em> of your device and thus it can be activated by
     long-pressing the Home key.</p>
 
@@ -65,10 +65,10 @@
 <h2>Android 9 or higher</h2>
 <p>A new action <a href="https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#GLOBAL_ACTION_LOCK_SCREEN">GLOBAL_ACTION_LOCK_SCREEN</a>
 was <a href="https://developer.android.com/about/versions/pie/android-9.0">introduced in Android 9</a> which enable screen locking
-without the need of the timeout workarround described below.</p>
-<p>This is the preferred method for devices running Android Pie or higher, however your device will fall back automatically to the timeout workarround if you don't enable the accessibility service</p>
+without the need of the timeout workaround described below.</p>
+<p>This is the preferred method for devices running Android Pie or higher, however your device will fall back automatically to the timeout workaround if you don't enable the accessibility service</p>
 
-<h2>timeout workarround (for devices running android versions older than 9)</h2>
+<h2>timeout workaround (for devices running android versions older than 9)</h2>
 <p>Behind the scenes <b>Screen Off</b> temporarily lowers the <em>Screen timeout</em> setting to zero and then waits
     for some time which can be modified in <a href="screenoffsettings:///settings">Settings</a> until the
     operating system triggers the timeout and the screen is turn off. During that wait time the screen is dimmed out
@@ -78,7 +78,7 @@ without the need of the timeout workarround described below.</p>
 <h2>Android 9 or higher</h2>
 <p>If you enable the <b>Screen Off Global Action Performer Service</b> then no additional permissions are required.</p>
 
-<h2>Timeout workarround (for devices running android versions  older than 9)</h2>
+<h2>Timeout workaround (for devices running android versions  older than 9)</h2>
 <h3>Write Settings</h3>
 <p><b>Screen Off</b> needs to be able to change system settings and it will ask you to explicitly allow this the first
     time it runs</p>
