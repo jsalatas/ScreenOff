@@ -23,7 +23,7 @@ public class GlobalActionService extends AccessibilityService {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         ScreenOffActivity.setActionService(null);
+        super.onDestroy();
     }
 }

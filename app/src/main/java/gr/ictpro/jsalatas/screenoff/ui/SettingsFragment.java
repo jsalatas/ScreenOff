@@ -46,7 +46,7 @@ public class SettingsFragment extends Fragment {
             layout.setVisibility(View.VISIBLE);
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                TextView settingsDescription = view.findViewById(R.id.accessibility_preffered_method);
+                TextView settingsDescription = view.findViewById(R.id.accessibility_preferred_method);
                 settingsDescription.setVisibility(View.VISIBLE);
 
             }

@@ -14,12 +14,12 @@
     <string name="about">About</string>
     <string name="license">License</string>
     <string name="settings">Settings</string>
-    <string name="email">Email us</string>
+    <string name="email">Email me</string>
     <string name="email_chooser">Send email</string>
     <string name="support">Support</string>
     <string name="settings_timeout_description">Set the maximum timeout (in seconds) to wait before turning off the screen.</string>
-    <string name="settings_timeout_description_accessibility">As an alternative (the preffered method), you can enable the Screen Off Global Action Performer Accessibility Service, which requires no settings or permissions.</string>
-    <string name="accessibility_service_description">Required in Android Pie or higher in order to be able to perform GLOBAL_ACTION_LOCK_SCREEN which can turn off screen without requiring a timeout.\n\nThis is the preffered method for devices running Android Pie or higher.</string>
+    <string name="settings_timeout_description_accessibility">As an alternative (the preferred method), you can enable the Screen Off Global Action Performer Accessibility Service, which requires no settings or permissions.</string>
+    <string name="accessibility_service_description">Required in Android Pie or higher in order to be able to perform GLOBAL_ACTION_LOCK_SCREEN which can turn off screen without requiring a timeout.\n\nThis is the preferred method for devices running Android Pie or higher.\n\nThe application doesn\'t monitor any user actions.</string>
     <string name="accessibility_service_label">Screen Off Global Action Performer</string>
     <string name="no_settings_description">No settings required!</string>
 </resources>

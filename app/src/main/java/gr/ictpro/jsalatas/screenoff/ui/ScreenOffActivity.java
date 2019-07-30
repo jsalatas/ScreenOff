@@ -51,6 +51,10 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(ScreenOffActivity.canUseLockScreenGlobalAction()) {
+            ScreenOffActivity.actionService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
+            finishAndRemoveTask();
+        }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_main);
@@ -88,7 +92,6 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
 
     private void screenOff() {
         if(ScreenOffActivity.canUseLockScreenGlobalAction()) {
-            System.out.println(">>>>>>>>>>>>>>>>> salatas: performing global action");
             ScreenOffActivity.actionService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
         } else if (checkPermissions()) {
             final WindowManager.LayoutParams winParams = getWindow().getAttributes();
@@ -116,9 +119,11 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
 
     @Override
     protected void onDestroy() {
-        SettingsWriter.getInstance().restoreTimeout();
+        if(!ScreenOffActivity.canUseLockScreenGlobalAction()) {
+            SettingsWriter.getInstance().restoreTimeout();
+        }
         super.onDestroy();
-        System.exit(0);
+        finish();
     }
 
     @Override
@@ -129,7 +134,7 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
     @Override
     protected void onPause() {
         super.onPause();
-        if(!grantingPermissions) {
+        if(!grantingPermissions || ScreenOffActivity.canUseLockScreenGlobalAction()) {
             finish();
         }
     }

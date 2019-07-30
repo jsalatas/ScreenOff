@@ -54,13 +54,6 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <activity android:name=".ui.VoiceActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.VOICE"/>
-            </intent-filter>
-        </activity>
         <activity
                 android:name=".ui.ScreenOffSettingsActivity"
                 android:label="@string/title_activity_screen_off_setting"
