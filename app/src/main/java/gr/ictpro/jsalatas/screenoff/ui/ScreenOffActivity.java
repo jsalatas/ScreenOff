@@ -28,6 +28,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
@@ -52,8 +53,14 @@ public class ScreenOffActivity extends AppCompatActivity implements PermissionsD
         super.onCreate(savedInstanceState);
 
         if(ScreenOffActivity.canUseLockScreenGlobalAction()) {
-            ScreenOffActivity.actionService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
-            finishAndRemoveTask();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ScreenOffActivity.actionService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
+                    finishAndRemoveTask();
+                }
+            }, 500);
         }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
